@@ -1,5 +1,6 @@
 export class Routes {
   static home = "/";
+  static private = "/private";
   // auth
   static resetPassword = "/user/reset-password";
   static registor = "/user/register";

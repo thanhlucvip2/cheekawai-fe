@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Logo from "./Logo";
 import { menuRoutes, Routes } from "@Routes/index";
+import { useAuth } from "@Hooks/use-auth";
 import { RoutesConst } from "@Constants/routes-const";
+import GlobalStateContext from "@Store/Context";
+import { SET_LOADING } from "@Store/constants";
 
 interface Props {
   openClass: string;
@@ -14,17 +17,28 @@ interface Props {
 }
 const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
   const router = useRouter();
+  const [state, dispatch] = useContext(GlobalStateContext);
+  const handleLoading = (isLoading: boolean) => {
+    dispatch({
+      type: SET_LOADING,
+      data: isLoading,
+    });
+  };
 
   const { pathname } = router;
   const [scroll, setScroll] = useState(0);
-
+  const { logout } = useAuth();
   const scrollEvent = () => {
     const scrollCheck = window.scrollY;
     if (scrollCheck !== scroll) {
       setScroll(scrollCheck);
     }
   };
-  async function onLogOut() {}
+  async function onLogOut() {
+    logout(() => {
+      router.push(Routes.login);
+    });
+  }
   useEffect(() => {
     document.addEventListener("scroll", scrollEvent);
   });
@@ -63,6 +77,7 @@ const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
                             style={{ cursor: "pointer" }}
                             onClick={() => {
                               if (pathname !== item.path) {
+                                handleLoading(true);
                               }
                             }}
                           >
@@ -94,6 +109,7 @@ const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
                                         style={{ cursor: "pointer" }}
                                         onClick={() => {
                                           if (pathname !== itemChildren.path) {
+                                            handleLoading(true);
                                           }
                                         }}
                                       >
@@ -138,24 +154,30 @@ const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
                 {!isAuth ? (
                   <>
                     <Link legacyBehavior href={Routes.registor}>
-                      <span onClick={() => {}} style={{ cursor: "pointer" }}>
-                        <a className="text-link-bd-btom hover-up">Đăng ký</a>
+                      <span
+                        onClick={() => handleLoading(true)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <a className="text-link-bd-btom hover-up">Register</a>
                       </span>
                     </Link>
 
                     <Link legacyBehavior href={Routes.login}>
-                      <span onClick={() => {}}>
+                      <span onClick={() => handleLoading(true)}>
                         <a className="btn btn-default btn-shadow ml-40 hover-up">
-                          Đăng nhập
+                          Sign in
                         </a>
                       </span>
                     </Link>
                   </>
                 ) : (
-                  <span onClick={() => {}}>
+                  <span>
                     <a
                       className="btn btn-default btn-shadow ml-40 hover-up"
-                      onClick={onLogOut}
+                      onClick={() => {
+                        handleLoading(true);
+                        onLogOut();
+                      }}
                     >
                       Logout
                     </a>

@@ -1,5 +1,6 @@
 export const ENPOINT = {
   // user
-  login: "user/login".trim(),
-  logout: "user/logout".trim(),
+  login: "auth/login".trim(),
+  logout: "auth/logout".trim(),
+  user_profile: "user/user-profile",
 };
