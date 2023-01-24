@@ -1,7 +1,7 @@
 export interface HttpResponseModel<T> {
   message: string;
   status: string;
-  code: 200;
+  code: number;
   data: T;
   timeRes: Date;
   method: string;

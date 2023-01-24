@@ -15,15 +15,15 @@ const Singin = () => {
   const [loginError, setLoginError] = useState(false);
   const router = useRouter();
   const [isLoading, seIsLoading] = useState(false);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    setEmail((router.query.email as string) || "");
+    setUsername((router.query.username as string) || "");
   }, [router]);
 
   const onFinish = (dataLogin: LoginModel) => {
     seIsLoading(true);
-    handleLogin({ ...dataLogin, username: email });
+    handleLogin({ ...dataLogin, username });
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -47,9 +47,9 @@ const Singin = () => {
     seIsLoading(true);
     router.push({
       pathname: Routes.resetPassword,
-      query: email
+      query: username
         ? {
-            email,
+            username,
           }
         : {},
     });
@@ -72,14 +72,14 @@ const Singin = () => {
                   action="#"
                 >
                   <AppInput
-                    label="Email"
+                    label="username"
                     required={true}
-                    requiredMessage="Vui lòng điền Email!"
-                    placeholder="Email"
-                    name="email"
-                    value={email}
+                    requiredMessage="Vui lòng điền username!"
+                    placeholder="username"
+                    name="username"
+                    value={username}
                     onChange={(event) => {
-                      setEmail(event.target.value);
+                      setUsername(event.target.value);
                     }}
                   />
                   <AppInput
