@@ -77,7 +77,7 @@ const MobileMenu = (props: Props) => {
                     <Link legacyBehavior href={Routes.login}>
                       <span onClick={() => handleLoading(true)}>
                         <a className="btn btn-default btn-shadow hover-up">
-                          Sign in
+                          Đăng nhập
                         </a>
                       </span>
                     </Link>
@@ -86,7 +86,7 @@ const MobileMenu = (props: Props) => {
                         onClick={() => handleLoading(true)}
                         style={{ cursor: "pointer" }}
                       >
-                        <a className="text-link-bd-btom hover-up">Register</a>
+                        <a className="text-link-bd-btom hover-up">Đăng ký</a>
                       </span>
                     </Link>
                   </div>

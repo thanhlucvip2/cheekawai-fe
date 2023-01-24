@@ -158,14 +158,14 @@ const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
                         onClick={() => handleLoading(true)}
                         style={{ cursor: "pointer" }}
                       >
-                        <a className="text-link-bd-btom hover-up">Register</a>
+                        <a className="text-link-bd-btom hover-up">Đăng ký</a>
                       </span>
                     </Link>
 
                     <Link legacyBehavior href={Routes.login}>
                       <span onClick={() => handleLoading(true)}>
                         <a className="btn btn-default btn-shadow ml-40 hover-up">
-                          Sign in
+                          Đăng nhập
                         </a>
                       </span>
                     </Link>
