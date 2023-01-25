@@ -37,9 +37,14 @@ const Layout = ({ children, isLoading = true }: Props) => {
         handleOpen={handleOpen}
         handleRemove={handleRemove}
         openClass={openClass}
-        isAuth={profile?.data ? true : false}
+        isAuth={profile ? true : false}
+        roleAdmin={profile?.role === "ADMIN"}
       />
-      <MobileMenu openClass={openClass} isAuth={profile?.data ? true : false} />
+      <MobileMenu
+        roleAdmin={profile?.role === "ADMIN"}
+        openClass={openClass}
+        isAuth={profile ? true : false}
+      />
       <main className="main">{children}</main>
       <Footer />
       <BackToTop />

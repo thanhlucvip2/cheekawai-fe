@@ -1,4 +1,5 @@
 export const RoutesConst = {
   public: "public",
-  private: "private",
+  user: "user",
+  admin: "admin",
 };

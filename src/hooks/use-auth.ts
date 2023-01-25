@@ -29,7 +29,7 @@ export function useAuth(option?: Partial<swr__internal.PublicConfiguration>) {
     callback();
   }
 
-  const profile: UserProfile | any = data;
+  const profile: UserProfile = data?.data as UserProfile;
 
   return {
     profile,

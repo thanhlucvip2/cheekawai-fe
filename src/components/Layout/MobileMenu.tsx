@@ -13,6 +13,7 @@ import Logo from "./Logo";
 interface Props {
   openClass: string;
   isAuth: boolean;
+  roleAdmin: boolean;
 }
 const MobileMenu = (props: Props) => {
   const [isActive, setIsActive] = useState({
@@ -109,8 +110,14 @@ const MobileMenu = (props: Props) => {
                   <ul className="mobile-menu font-heading">
                     {menuRoutes.map((item, index) => {
                       if (
-                        item.routesType === RoutesConst.private &&
+                        item.routesType === RoutesConst.user &&
                         !props.isAuth
+                      ) {
+                        return;
+                      }
+                      if (
+                        item.routesType === RoutesConst.admin &&
+                        !props.roleAdmin
                       ) {
                         return;
                       }
@@ -147,11 +154,19 @@ const MobileMenu = (props: Props) => {
                                 (itemChildren, indexChildren) => {
                                   if (
                                     itemChildren.routesType ===
-                                      RoutesConst.private &&
+                                      RoutesConst.user &&
                                     !props.isAuth
                                   ) {
                                     return;
                                   }
+                                  if (
+                                    itemChildren.routesType ===
+                                      RoutesConst.admin &&
+                                    !props.roleAdmin
+                                  ) {
+                                    return;
+                                  }
+
                                   return (
                                     <li key={indexChildren}>
                                       <Link

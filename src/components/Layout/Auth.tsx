@@ -27,16 +27,14 @@ const Authentication = (props: Props) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!firstLoading && profile?.data) {
+    if (!firstLoading && profile) {
       router.push({
         pathname: Routes.home,
       });
     }
   }, [firstLoading, profile, router]);
 
-  return (
-    <>{!firstLoading && !profile?.data ? <>{props.children}</> : <Loading />}</>
-  );
+  return <>{!firstLoading && !profile ? <>{props.children}</> : <Loading />}</>;
 };
 
 const NoAuthentication = (props: Props) => {
@@ -44,7 +42,7 @@ const NoAuthentication = (props: Props) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!firstLoading && !profile?.data) {
+    if (!firstLoading && !profile) {
       router.push({
         pathname: Routes.home,
       });

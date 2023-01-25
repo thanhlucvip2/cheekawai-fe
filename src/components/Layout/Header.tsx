@@ -14,8 +14,15 @@ interface Props {
   isAuth: boolean;
   handleOpen: Function;
   handleRemove: Function;
+  roleAdmin: boolean;
 }
-const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
+const Header = ({
+  handleOpen,
+  handleRemove,
+  openClass,
+  isAuth,
+  roleAdmin,
+}: Props) => {
   const router = useRouter();
   const [state, dispatch] = useContext(GlobalStateContext);
   const handleLoading = (isLoading: boolean) => {
@@ -60,7 +67,11 @@ const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
               <nav className="nav-main-menu">
                 <ul className="main-menu">
                   {menuRoutes.map((item, index) => {
-                    if (item.routesType === RoutesConst.private && !isAuth) {
+                    if (item.routesType === RoutesConst.user && !isAuth) {
+                      return;
+                    }
+
+                    if (item.routesType === RoutesConst.admin && !roleAdmin) {
                       return;
                     }
                     return (
@@ -94,8 +105,15 @@ const Header = ({ handleOpen, handleRemove, openClass, isAuth }: Props) => {
                               (itemChildren, indexChildren) => {
                                 if (
                                   itemChildren.routesType ===
-                                    RoutesConst.private &&
+                                    RoutesConst.user &&
                                   !isAuth
+                                ) {
+                                  return;
+                                }
+                                if (
+                                  itemChildren.routesType ===
+                                    RoutesConst.admin &&
+                                  !roleAdmin
                                 ) {
                                   return;
                                 }
