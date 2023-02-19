@@ -6,7 +6,7 @@ import Layout from "@Component/Layout/Layout";
 import { Routes } from "@Routes/index";
 import { Form, Input } from "antd";
 import AppInput from "@Component/elements/Input";
-import { RegisterModel } from "@Models/register.model";
+import { RegisterModel } from "@Models/index";
 import { apiUserAxios } from "@Axios/user/api-user";
 import { useRouter } from "next/router";
 

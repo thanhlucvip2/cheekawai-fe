@@ -1,10 +1,9 @@
-import { VerifyUserModel } from "./../../models/verify-user.model";
+import { VerifyUserModel, RegisterModel } from "@Models/index";
 import { HttpResponseModel } from "./../http-response.model";
-import {} from "@Models/index";
+
 import axiosClient from "@Axios/axios";
 import { ENPOINT } from "@Axios/endpoint";
 import { AxiosResponse } from "axios";
-import { RegisterModel } from "@Models/register.model";
 
 export const apiUserAxios = {
   register(data: RegisterModel): Promise<HttpResponseModel<null>> {

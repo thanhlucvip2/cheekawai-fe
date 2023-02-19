@@ -25,5 +25,17 @@ export const menuRoutes: MenuRoutes[] = [
     label: "Trang admin",
     path: Routes.admin,
     routesType: RoutesConst.admin,
+    children: [
+      {
+        label: "Tạo loại sản phẩm",
+        path: Routes.createProduct,
+        routesType: RoutesConst.admin,
+      },
+      {
+        label: "Danh sách sản phẩm",
+        path: Routes.listProduct,
+        routesType: RoutesConst.admin,
+      },
+    ],
   },
 ];

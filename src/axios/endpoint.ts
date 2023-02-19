@@ -7,4 +7,8 @@ export const ENPOINT = {
   user_very_code: "/user/very-code",
   user_resend_code: "/user/resend-code",
   user_reset_password: "/user/reset-password",
+
+  // imported product
+  create_imported_product: "/imported-product-type/create",
+  get_all_imported_product: "/imported-product-type/all",
 };

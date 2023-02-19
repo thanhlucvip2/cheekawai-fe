@@ -8,7 +8,7 @@ import { useAuth } from "@Hooks/use-auth";
 import { RoutesConst } from "@Constants/routes-const";
 import GlobalStateContext from "@Store/Context";
 import { SET_LOADING } from "@Store/constants";
-
+import { CaretDownOutlined } from "@ant-design/icons";
 interface Props {
   openClass: string;
   isAuth: boolean;
@@ -75,14 +75,7 @@ const Header = ({
                       return;
                     }
                     return (
-                      <li
-                        key={index}
-                        className={
-                          item.children && item.children.length > 0
-                            ? "has-children"
-                            : ""
-                        }
-                      >
+                      <li key={index}>
                         <Link legacyBehavior href={item.path}>
                           <span
                             style={{ cursor: "pointer" }}
@@ -95,10 +88,14 @@ const Header = ({
                             <a
                               className={pathname === item.path ? "active" : ""}
                             >
-                              {item.label}
+                              {item.label}{" "}
+                              {item.children && item.children.length > 0 ? (
+                                <CaretDownOutlined />
+                              ) : null}
                             </a>
                           </span>
                         </Link>
+
                         {item.children && item.children.length > 0 ? (
                           <ul className="sub-menu">
                             {item.children.map(

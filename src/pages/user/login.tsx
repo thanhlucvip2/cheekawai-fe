@@ -3,7 +3,7 @@ import Link from "next/link";
 import Layout from "@Component/Layout/Layout";
 import ImageAssets from "@Component/elements/ImageAssets";
 import { Form } from "antd";
-import { LoginModel } from "@Models/login.model";
+import { LoginModel } from "@Models/user/login.model";
 import { useRouter } from "next/router";
 import { Routes } from "@Routes/routes";
 import { useAuth } from "@Hooks/use-auth";
